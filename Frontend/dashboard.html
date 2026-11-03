@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRAKRITI | Factory Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background: #f4f7f3;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            background: #174d32;
+            color: white;
+            padding: 20px 30px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        .chat-area {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .welcome {
+            text-align: center;
+            margin: auto;
+            color: #315d42;
+        }
+        .welcome h2 {
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+        .welcome p {
+            font-size: 16px;
+            color: #66776a;
+        }
+        .message {
+            padding: 14px 18px;
+            border-radius: 12px;
+            max-width: 70%;
+            line-height: 1.5;
+        }
+        .user-message {
+            background: #dceedd;
+            align-self: flex-end;
+        }
+        .bottom-area {
+            background: white;
+            padding: 20px;
+            border-top: 1px solid #ddd;
+        }
+        .chat-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            max-width: 900px;
+            margin: auto;
+        }
+        .plus-button {
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 50%;
+            background: #e7f0e7;
+            color: #174d32;
+            font-size: 27px;
+            cursor: pointer;
+        }
+        textarea {
+            flex: 1;
+            height: 50px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            resize: none;
+            outline: none;
+            font-size: 15px;
+        }
+        .send-button {
+            padding: 14px 22px;
+            border: none;
+            border-radius: 10px;
+            background: #174d32;
+            color: white;
+            cursor: pointer;
+            font-size: 15px;
+        }
+        .send-button:hover {
+            background: #246b45;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        🌿 PRAKRITI — Factory Portal
+    </header>
+    <div class="chat-area" id="chatArea">
+        <div class="welcome" id="welcome">
+            <h2>Welcome to PRAKRITI</h2>
+            <p>Ask questions about your factory, pollution and sustainable alternatives.</p>
+            <p>How can we help you today?</p>
+        </div>
+    </div>
+    <div class="bottom-area">
+        <div class="chat-box">
+            <button class="plus-button" type="button">+</button>
+            <textarea id="messageInput" placeholder="Ask PRAKRITI anything..."></textarea>
+            <button class="send-button" type="button" onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+    <script>
+        function sendMessage() {
+            const input = document.getElementById("messageInput");
+            const chatArea = document.getElementById("chatArea");
+            const message = input.value.trim();
+            if (message === "") {
+                return;
+            }
+            const welcome = document.getElementById("welcome");
+            if (welcome) {
+                welcome.remove();
+            }
+            const messageDiv = document.createElement("div");
+            messageDiv.className = "message user-message";
+            messageDiv.textContent = message;
+            chatArea.appendChild(messageDiv);
+            input.value = "";
+            chatArea.scrollTop = chatArea.scrollHeight;
+        }
+    </script>
+</body>
+</html>
